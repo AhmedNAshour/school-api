@@ -25,7 +25,14 @@ module.exports = class Student {
     ];
   }
 
-  async createStudent({ schoolId, name, age, grade, classroomId }) {
+  async createStudent({
+    __sharedAuth,
+    schoolId,
+    name,
+    age,
+    grade,
+    classroomId,
+  }) {
     try {
       const student = new this.mongomodels.student({
         name,
@@ -41,7 +48,7 @@ module.exports = class Student {
     }
   }
 
-  async getAllStudents({ _superAdminAuth }) {
+  async getAllStudents({ __superAdminAuth }) {
     try {
       const students = await this.mongomodels.student.find({});
       return students;
@@ -85,11 +92,17 @@ module.exports = class Student {
     }
   }
 
-  async updateStudent({ __sharedAuth, schoolId, name, age, grade, studentId }) {
+  async updateStudent({
+    __sharedAuth,
+    schoolId,
+    name,
+    contactInfo,
+    studentId,
+  }) {
     try {
       const updatedStudent = await this.mongomodels.student.findByIdAndUpdate(
         studentId,
-        { name, age, grade },
+        { name, contactInfo },
         { new: true }
       );
       if (!updatedStudent) {

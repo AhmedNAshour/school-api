@@ -23,21 +23,23 @@ module.exports = class TokenManager {
    * long token contains immutable data and long lived
    * master key must exists on any device to create short tokens
    */
-  genLongToken({ userId, username, role }) {
+  genLongToken({ userId, username, role, schoolId }) {
+    console.log('genLongToken', userId, username, role, schoolId);
     return jwt.sign(
       {
         userId,
         username,
         role,
+        schoolId,
       },
       this.config.dotEnv.LONG_TOKEN_SECRET,
       { expiresIn: this.longTokenExpiresIn }
     );
   }
 
-  genShortToken({ userId, username, role, sessionId, deviceId }) {
+  genShortToken({ userId, username, role, schoolId, sessionId, deviceId }) {
     return jwt.sign(
-      { userId, username, role, sessionId, deviceId },
+      { userId, username, role, schoolId, sessionId, deviceId },
       this.config.dotEnv.SHORT_TOKEN_SECRET,
       { expiresIn: this.shortTokenExpiresIn }
     );

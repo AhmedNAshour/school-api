@@ -1,4 +1,3 @@
-// models/user.js
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
@@ -7,15 +6,30 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     enum: ['superadmin', 'schooladmin'],
-    required: true, // Role is always required
+    required: true,
   },
   school: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'School',
     required: function () {
-      // Make 'school' field required if the role is 'schooladmin'
       return this.role === 'schooladmin';
+    },
+    validate: {
+      // Custom validation function
+      validator: async function () {
+        if (this.role === 'schooladmin') {
+          // Check if the school with the provided ID exists
+          const school = await mongoose
+            .model('School')
+            .findOne({ _id: this.school });
+          return !!school;
+        }
+        // For other roles, no validation is required
+        return true;
+      },
+      message: 'Invalid school reference for schooladmin role',
     },
   },
 });
+
 module.exports = mongoose.model('User', userSchema);

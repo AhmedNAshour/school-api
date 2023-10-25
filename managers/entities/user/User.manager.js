@@ -25,7 +25,7 @@ module.exports = class User {
     ];
   }
 
-  async getUserById({ userId }) {
+  async getUserById({ __superAdminAuth, userId }) {
     // console.log('getUserById', userId);
     try {
       const user = await this.mongomodels.user.findById(userId);
@@ -38,7 +38,7 @@ module.exports = class User {
     }
   }
 
-  async getAllUsers() {
+  async getAllUsers({ __superAdminAuth }) {
     try {
       const users = await this.mongomodels.user.find();
       return users;
@@ -47,13 +47,9 @@ module.exports = class User {
     }
   }
 
-  async createUser({ __superAdminAuth, username, password, role }) {
+  async createUser({ __superAdminAuth, username, password, role, schoolId }) {
     // Check if the provided role is valid
-    if (
-      role !== 'superadmin' &&
-      role !== 'schooladmin' &&
-      role !== 'otherrole'
-    ) {
+    if (role !== 'superadmin' && role !== 'schooladmin') {
       return { error: 'Invalid role' };
     }
 
@@ -69,6 +65,7 @@ module.exports = class User {
         username,
         password: hashedPassword,
         role,
+        school: role === 'schooladmin' ? schoolId : null,
       });
 
       await newUser.save();
@@ -77,6 +74,7 @@ module.exports = class User {
         userId: newUser._id,
         username: newUser.username,
         role: newUser.role,
+        schoolId: role === 'schooladmin' ? newUser.school : null,
       });
 
       // Response
@@ -134,6 +132,7 @@ module.exports = class User {
         userId: user._id,
         username: user.username,
         role: user.role,
+        schoolId: user.school,
       });
       // console.log('user', user);
       // console.log('longToken', longToken);

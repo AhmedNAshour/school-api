@@ -29,7 +29,7 @@ module.exports = ({ meta, config, managers }) => {
     }
 
     const userRole = decoded.role;
-    if (userRole === 'superAdmin' || userRole === 'schooladmin') {
+    if (userRole === 'superadmin' || userRole === 'schooladmin') {
       // Superadmins always have access, and schooladmins have access when 'role' matches
       if (userRole === 'schooladmin') {
         if (!decoded.schoolId) {
