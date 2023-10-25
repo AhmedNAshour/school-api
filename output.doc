@@ -1,0 +1,109 @@
+Folder PATH listing
+Volume serial number is 3087-4427
+C:.
+|   .gitignore
+|   app.js
+|   are-axions.jpeg
+|   index.js
+|   output.doc
+|   package-lock.json
+|   package.json
+|   README.md
+|   
++---cache
+|       cache.dbh.js
+|       redis-client.js
+|       
++---config
+|   |   index.config.js
+|   |   
+|   \---envs
+|           development.js
+|           production.js
+|           
++---connect
+|       mongo.js
+|       
++---libs
+|       utils.js
+|       
++---loaders
+|   |   ManagersLoader.js
+|   |   MiddlewaresLoader.js
+|   |   MongoLoader.js
+|   |   ResourceMeshLoader.js
+|   |   ValidatorsLoader.js
+|   |   
+|   \---_common
+|           fileLoader.js
+|           loader.js
+|           
++---managers
+|   |   _managers.md
+|   |   
+|   +---api
+|   |   |   Api.manager.js
+|   |   |   
+|   |   \---_common
+|   |           getParamNames.js
+|   |           
+|   +---content_token
+|   |       ContentToken.manager.js
+|   |       
+|   +---entities
+|   |   +---token
+|   |   |       Token.manager.js
+|   |   |       
+|   |   \---user
+|   |           User.manager.js
+|   |           user.schema.js
+|   |           
+|   +---http
+|   |       UserServer.manager.js
+|   |       
+|   +---live_db
+|   |       LiveDb.manager.js
+|   |       
+|   +---response_dispatcher
+|   |       ResponseDispatcher.manager.js
+|   |       
+|   +---shark_fin
+|   |       SharkFin.manager.js
+|   |       
+|   +---time_machine
+|   |       TimeMachine.manager.js
+|   |       
+|   +---token
+|   |       Token.manager.js
+|   |       
+|   +---virtual_stack
+|   |       Bolt.manager.js
+|   |       VirtualStack.manager.js
+|   |       
+|   \---_common
+|           schema.models.js
+|           schema.validators.js
+|           time.helper.js
+|           
++---mws
+|       Middleware.manager.js
+|       _middlewares.md
+|       __device.mw.js
+|       __files.mw.js
+|       __headers.mw.js
+|       __longToken.mw.js
+|       __params.mw.js
+|       __query.mw.js
+|       __shortToken.mw.js
+|       __token.mw.js
+|       
++---public
+|       countries.data.json
+|       emojis.data.json
+|       
+\---static_arch
+        lang.seed.js
+        main.system.js
+        myTypes.config.js
+        wild.system.js
+        
