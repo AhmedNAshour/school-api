@@ -1,6 +1,6 @@
 # School Management System API
 
-This repository contains the API for a School Management System. It provides endpoints for managing schools, classrooms, students, and users with different roles. You can use this API for educational institution management, student data tracking, and user authentication.
+This repository contains the API for a School Management System. It provides endpoints for managing schools, classrooms, students, and users with different roles.
 
 ## Getting Started
 
@@ -31,28 +31,36 @@ The API provides various endpoints to interact with schools, classrooms, student
 - **Schools**
 
   - `GET /api/school/getAllSchools`: Retrieve a list of all schools.
-  - `GET /api/school/getSchoolById/{schoolId}`: Retrieve a specific school by its ID.
+  - `GET /api/school/getSchoolById?schoolId={schoolId}`: Retrieve a specific school by its ID.
   - `POST /api/school/createSchool`: Create a new school.
-
+  - `PUT /api/school/updateSchool?schoolId={schoolId}`: Update school details.
+  - `DELETE /api/school/deleteSchool?schoolId={schoolId}`: Delete a school.
+   
 - **Classrooms**
 
-  - `GET /api/classroom/getAllClassrooms`: Retrieve a list of all classrooms.
-  - `GET /api/classroom/getClassroomById/{classroomId}`: Retrieve a specific classroom by its ID.
+  - `GET /api/classroom/getAllClassrooms?schoolId={schoolId}`: Retrieve a list of all classrooms of a specific school.
+  - `GET /api/classroom/getClassroomById?schoolId={schoolId}&classroomId={classroomId}`: Retrieve a specific classroom by its ID.
   - `POST /api/classroom/createClassroom`: Create a new classroom.
+  - `PUT /api/classroom/updateClassroom?schoolId={schoolId}&classroomId={classroomId}`: Update classroom details.
+  - `DELETE /api/classroom/deleteClassroom?schoolId={schoolId}&classroomId={classroomId}`: Delete a classroom.
 
 - **Students**
 
   - `GET /api/student/getAllStudents`: Retrieve a list of all students.
-  - `GET /api/student/getStudentById/{studentId}`: Retrieve a specific student by their ID.
+  - `GET /api/student/getStudentById?schoolId={schoolId}&studentId={studentId}`: Retrieve a specific student by their ID.
+  - `GET /api/student/getStudentsBySchool?schoolId={schoolId}`: Retrieves students of a specific school.
+  - `GET /api/student/getStudentsByClassroom?schoolId={schoolId}&classroomId={classroomId}`:  Retrieves students of a specific classroom.
   - `POST /api/student/createStudent`: Create a new student.
+  - `PUT /api/student/updateStudent?schoolId={schoolId}&studentId={studentId}`: Update student details.
+  - `DELETE /api/student/deleteStudent?schoolId={schoolId}&studentId={studentId}`: Delete a student.
 
 - **Users**
   - `POST /api/user/createUser`: Create a new user.
   - `POST /api/user/login`: Authenticate and log in as a user.
   - `GET /api/user/getAllUsers`: Retrieve a list of all users.
-  - `GET /api/user/getUserById/{userId}`: Retrieve a specific user by their ID.
-  - `PUT /api/user/updateUser/{userId}`: Update user details.
-  - `DELETE /api/user/deleteUser/{userId}`: Delete a user.
+  - `GET /api/user/getUserById?userId={userId}`: Retrieve a specific user by their ID.
+  - `PUT /api/user/updateUser?userId={userId}`: Update user details.
+  - `DELETE /api/user/deleteUser?userId={userId}`: Delete a user.
 
 ## Usage
 
